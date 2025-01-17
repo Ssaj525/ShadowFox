@@ -1,0 +1,93 @@
+These are some of the values to test the models performance
+
+1. Urban, high-value area:
+
+1. CRIM: 0.00632
+2. ZN: 18.0
+3. INDUS: 2.31
+4. CHAS: 0
+5. NOX: 0.538
+6. RM: 6.575
+7. AGE: 65.2
+8. DIS: 4.0900
+9. RAD: 1
+10. TAX: 296
+11. PTRATIO: 15.3
+12. B: 396.90
+13. LSTAT: 4.98
+
+
+
+
+2. Suburban, medium-value area:
+
+1. CRIM: 0.02731
+2. ZN: 0.0
+3. INDUS: 7.07
+4. CHAS: 0
+5. NOX: 0.469
+6. RM: 6.421
+7. AGE: 78.9
+8. DIS: 4.9671
+9. RAD: 2
+10. TAX: 242
+11. PTRATIO: 17.8
+12. B: 396.90
+13. LSTAT: 9.14
+
+
+
+
+3. Industrial, lower-value area:
+
+1. CRIM: 0.06076
+2. ZN: 0.0
+3. INDUS: 11.93
+4. CHAS: 0
+5. NOX: 0.573
+6. RM: 6.976
+7. AGE: 91.0
+8. DIS: 2.1675
+9. RAD: 1
+10. TAX: 273
+11. PTRATIO: 21.0
+12. B: 396.90
+13. LSTAT: 5.64
+
+
+
+
+4. Riverside, high-value area:
+
+1. CRIM: 0.02985
+2. ZN: 0.0
+3. INDUS: 2.18
+4. CHAS: 1
+5. NOX: 0.458
+6. RM: 6.430
+7. AGE: 58.7
+8. DIS: 6.0622
+9. RAD: 3
+10. TAX: 222
+11. PTRATIO: 18.7
+12. B: 394.12
+13. LSTAT: 5.21
+
+
+
+
+5. Urban, low-value area:
+
+1. CRIM: 0.14455
+2. ZN: 12.5
+3. INDUS: 7.87
+4. CHAS: 0
+5. NOX: 0.524
+6. RM: 6.172
+7. AGE: 96.1
+8. DIS: 5.9505
+9. RAD: 5
+10. TAX: 311
+11. PTRATIO: 15.2
+12. B: 396.90
+13. LSTAT: 19.15

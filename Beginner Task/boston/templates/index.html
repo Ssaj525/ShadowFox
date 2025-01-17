@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boston House Price Predictor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.5s ease-out;
+    }
+  </style>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-50 to-teal-100 flex items-center justify-center p-4"
+  >
+    <div
+      class="w-full max-w-6xl bg-white shadow-xl rounded-lg md:rounded-3xl overflow-hidden"
+    >
+      <div class="grid md:grid-cols-2">
+        <div class="bg-teal-600 p-8 text-white">
+          <h1 class="text-3xl font-bold mb-4 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              />
+            </svg>
+            Boston House Price Predictor
+          </h1>
+          <p class="mb-6">
+            Get an estimated price for a house in Boston based on various
+            features!
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                />
+              </svg>
+              <span>Accurate price estimates</span>
+            </div>
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              <span>Consider multiple factors</span>
+            </div>
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
+              <span>Based on real Boston housing data</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-8">
+          <form id="housePriceForm" class="space-y-4">
+            <div class="space-y-2">
+              <label for="crim" class="text-sm font-medium text-gray-700"
+                >CRIM (per capita crime rate by town)</label
+              >
+              <input
+                id="crim"
+                type="number"
+                step="0.00001"
+                min="0"
+                placeholder="Enter CRIM"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="zn" class="text-sm font-medium text-gray-700"
+                >ZN (proportion of residential land zoned for lots over 25,000
+                sq.ft.)</label
+              >
+              <input
+                id="zn"
+                type="number"
+                step="0.01"
+                min="0"
+                placeholder="Enter ZN"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="indus" class="text-sm font-medium text-gray-700"
+                >INDUS (proportion of non-retail business acres per town)</label
+              >
+              <input
+                id="indus"
+                type="number"
+                step="0.01"
+                min="0"
+                placeholder="Enter INDUS"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="chas" class="text-sm font-medium text-gray-700"
+                >CHAS (Charles River dummy variable)</label
+              >
+              <select
+                id="chas"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              >
+                <option value="0">0 (No)</option>
+                <option value="1">1 (Yes)</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="nox" class="text-sm font-medium text-gray-700"
+                >NOX (nitric oxides concentration)</label
+              >
+              <input
+                id="nox"
+                type="number"
+                step="0.001"
+                min="0"
+                max="1"
+                placeholder="Enter NOX"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="rm" class="text-sm font-medium text-gray-700"
+                >RM (average number of rooms per dwelling)</label
+              >
+              <input
+                id="rm"
+                type="number"
+                step="0.001"
+                min="0"
+                placeholder="Enter RM"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="age" class="text-sm font-medium text-gray-700"
+                >AGE (proportion of owner-occupied units built prior to
+                1940)</label
+              >
+              <input
+                id="age"
+                type="number"
+                step="0.1"
+                min="0"
+                max="100"
+                placeholder="Enter AGE"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="dis" class="text-sm font-medium text-gray-700"
+                >DIS (weighted distances to five Boston employment
+                centres)</label
+              >
+              <input
+                id="dis"
+                type="number"
+                step="0.0001"
+                min="0"
+                placeholder="Enter DIS"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="rad" class="text-sm font-medium text-gray-700"
+                >RAD (index of accessibility to radial highways)</label
+              >
+              <input
+                id="rad"
+                type="number"
+                step="1"
+                min="1"
+                placeholder="Enter RAD"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="tax" class="text-sm font-medium text-gray-700"
+                >TAX (full-value property-tax rate per $10,000)</label
+              >
+              <input
+                id="tax"
+                type="number"
+                step="1"
+                min="0"
+                placeholder="Enter TAX"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="ptratio" class="text-sm font-medium text-gray-700"
+                >PTRATIO (pupil-teacher ratio by town)</label
+              >
+              <input
+                id="ptratio"
+                type="number"
+                step="0.1"
+                min="0"
+                placeholder="Enter PTRATIO"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="b" class="text-sm font-medium text-gray-700"
+                >B (1000(Bk - 0.63)^2 where Bk is the proportion of blacks by
+                town)</label
+              >
+              <input
+                id="b"
+                type="number"
+                step="0.01"
+                min="0"
+                max="396.90"
+                placeholder="Enter B"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="lstat" class="text-sm font-medium text-gray-700"
+                >LSTAT (% lower status of the population)</label
+              >
+              <input
+                id="lstat"
+                type="number"
+                step="0.01"
+                min="0"
+                max="100"
+                placeholder="Enter LSTAT"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Predict Price
+            </button>
+          </form>
+          <div id="predictionResult" class="mt-6 text-center hidden">
+            <h3 class="text-lg font-semibold mb-2 text-gray-800">
+              Estimated House Price
+            </h3>
+            <p
+              id="predictedPrice"
+              class="text-4xl font-bold text-teal-600 flex items-center justify-center bg-teal-100 rounded-full p-4 shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              $<span id="priceValue"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("housePriceForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const formData = {
+            crim: document.getElementById("crim").value,
+            zn: document.getElementById("zn").value,
+            indus: document.getElementById("indus").value,
+            chas: document.getElementById("chas").value,
+            nox: document.getElementById("nox").value,
+            rm: document.getElementById("rm").value,
+            age: document.getElementById("age").value,
+            dis: document.getElementById("dis").value,
+            rad: document.getElementById("rad").value,
+            tax: document.getElementById("tax").value,
+            ptratio: document.getElementById("ptratio").value,
+            b: document.getElementById("b").value,
+            lstat: document.getElementById("lstat").value,
+          };
+
+          try {
+            const response = await fetch("/predict", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            const predictionResult =
+              document.getElementById("predictionResult");
+            const priceValue = document.getElementById("priceValue");
+
+            priceValue.textContent = result.prediction.toLocaleString(
+              undefined,
+              { maximumFractionDigits: 0 }
+            );
+            predictionResult.classList.remove("hidden");
+            predictionResult.classList.add("animate-fadeInUp");
+
+            // Reset animation
+            setTimeout(() => {
+              predictionResult.classList.remove("animate-fadeInUp");
+            }, 500);
+          } catch (error) {
+            console.error("Error:", error);
+            alert(
+              "An error occurred while predicting the price. Please try again."
+            );
+          }
+        });
+    </script>
+  </body>
+</html>
