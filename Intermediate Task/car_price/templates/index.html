@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Selling Price Predictor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.5s ease-out;
+    }
+  </style>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4"
+  >
+    <div
+      class="w-full max-w-6xl bg-white shadow-xl rounded-lg md:rounded-3xl overflow-hidden"
+    >
+      <div class="grid md:grid-cols-2">
+        <div class="bg-indigo-600 p-8 text-white">
+          <h1 class="text-3xl font-bold mb-4 flex items-center">
+            <svg
+              viewBox="0 0 24 24"
+              class="h-8 w-8 mr-2"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M8 17H16M8 17C8 18.1046 7.10457 19 6 19C4.89543 19 4 18.1046 4 17M8 17C8 15.8954 7.10457 15 6 15C4.89543 15 4 15.8954 4 17M16 17C16 18.1046 16.8954 19 18 19C19.1046 19 20 18.1046 20 17M16 17C16 15.8954 16.8954 15 18 15C19.1046 15 20 15.8954 20 17M10 5V11M4 11L4.33152 9.01088C4.56901 7.58593 4.68776 6.87345 5.0433 6.3388C5.35671 5.8675 5.79705 5.49447 6.31346 5.26281C6.8993 5 7.6216 5 9.06621 5H12.4311C13.3703 5 13.8399 5 14.2662 5.12945C14.6436 5.24406 14.9946 5.43194 15.2993 5.68236C15.6435 5.96523 15.904 6.35597 16.425 7.13744L19 11M4 17H3.6C3.03995 17 2.75992 17 2.54601 16.891C2.35785 16.7951 2.20487 16.6422 2.10899 16.454C2 16.2401 2 15.9601 2 15.4V14.2C2 13.0799 2 12.5198 2.21799 12.092C2.40973 11.7157 2.71569 11.4097 3.09202 11.218C3.51984 11 4.0799 11 5.2 11H17.2C17.9432 11 18.3148 11 18.6257 11.0492C20.3373 11.3203 21.6797 12.6627 21.9508 14.3743C22 14.6852 22 15.0568 22 15.8C22 15.9858 22 16.0787 21.9877 16.1564C21.9199 16.5843 21.5843 16.9199 21.1564 16.9877C21.0787 17 20.9858 17 20.8 17H20"
+                  stroke="#fff"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
+            Car Price Predictor
+          </h1>
+          <p class="mb-6">
+            Get an estimated selling price for your car in seconds!
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                />
+              </svg>
+              <span>Accurate price estimates</span>
+            </div>
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              <span>Consider multiple factors</span>
+            </div>
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
+              <span>Up-to-date market trends</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-8">
+          <form id="carPriceForm" class="space-y-4">
+            <div class="space-y-2">
+              <label for="year" class="text-sm font-medium text-gray-700"
+                >Car Year</label
+              >
+              <input
+                id="year"
+                type="number"
+                min="1990"
+                max="2023"
+                step="1"
+                placeholder="Enter year"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="presentPrice"
+                class="text-sm font-medium text-gray-700"
+                >Present Price (in lakhs)</label
+              >
+              <input
+                id="presentPrice"
+                type="number"
+                min="0"
+                step="0.1"
+                placeholder="Enter present price"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="kmsDriven" class="text-sm font-medium text-gray-700"
+                >Kilometers Driven</label
+              >
+              <input
+                id="kmsDriven"
+                type="number"
+                min="0"
+                step="100"
+                placeholder="Enter kilometers driven"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="fuelType" class="text-sm font-medium text-gray-700"
+                >Fuel Type</label
+              >
+              <select
+                id="fuelType"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              >
+                <option value="">Select fuel type</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="sellerType" class="text-sm font-medium text-gray-700"
+                >Seller Type</label
+              >
+              <select
+                id="sellerType"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              >
+                <option value="">Select seller type</option>
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label
+                for="transmission"
+                class="text-sm font-medium text-gray-700"
+                >Transmission Type</label
+              >
+              <select
+                id="transmission"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              >
+                <option value="">Select transmission</option>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="owner" class="text-sm font-medium text-gray-700"
+                >Number of Previous Owners</label
+              >
+              <input
+                id="owner"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="Enter number of previous owners"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Predict Price
+            </button>
+          </form>
+          <div id="predictionResult" class="mt-6 text-center hidden">
+            <h3 class="text-lg font-semibold mb-2 text-gray-800">
+              Estimated Selling Price
+            </h3>
+            <p
+              id="predictedPrice"
+              class="text-4xl font-bold text-indigo-600 flex items-center justify-center bg-indigo-100 rounded-full p-4 shadow-lg"
+            >
+              <svg
+                width="800px"
+                height="800px"
+                class="h-8 w-8 mr-2"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                  stroke="indigo"
+                  stroke-width="2"
+                />
+                <path
+                  d="M12 17L9.12186 14.1219V14.1219C9.07689 14.0769 9.11206 13.9992 9.17562 13.9971C13.9993 13.8351 13.9408 7 9 7H15"
+                  stroke="indigo"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9 10.5H15"
+                  stroke="indigo"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span id="priceValue"></span>
+              <span class="text-xl sm:text-2xl md:text-3xl ml-2 text-indigo-400"
+                >Lakhs</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("carPriceForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const formData = {
+            year: document.getElementById("year").value,
+            presentPrice: document.getElementById("presentPrice").value,
+            kmsDriven: document.getElementById("kmsDriven").value,
+            fuelType: document.getElementById("fuelType").value,
+            sellerType: document.getElementById("sellerType").value,
+            transmission: document.getElementById("transmission").value,
+            owner: document.getElementById("owner").value,
+          };
+
+          try {
+            const response = await fetch("/predict", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            const predictionResult =
+              document.getElementById("predictionResult");
+            const priceValue = document.getElementById("priceValue");
+
+            priceValue.textContent = result.prediction;
+            predictionResult.classList.remove("hidden");
+            predictionResult.classList.add("animate-fadeInUp");
+
+            // Reset animation
+            setTimeout(() => {
+              predictionResult.classList.remove("animate-fadeInUp");
+            }, 500);
+          } catch (error) {
+            console.error("Error:", error);
+            alert(
+              "An error occurred while predicting the price. Please try again."
+            );
+          }
+        });
+    </script>
+  </body>
+</html>

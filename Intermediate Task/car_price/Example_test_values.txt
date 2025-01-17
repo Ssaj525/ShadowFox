@@ -1,0 +1,59 @@
+These are the five Example values you can use to test the model performance
+
+1. Recent, low-mileage car:
+
+1. Year: 2020
+2. Present Price: 8.5 (lakhs)
+3. Kms Driven: 15000
+4. Fuel Type: Petrol
+5. Seller Type: Dealer
+6. Transmission: Automatic
+7. Owner: 0 (First owner)
+
+
+
+2. Older, high-mileage car:
+
+1. Year: 2010
+2. Present Price: 4.5 (lakhs)
+3. Kms Driven: 120000
+4. Fuel Type: Diesel
+5. Seller Type: Individual
+6. Transmission: Manual
+7. Owner: 2 (Third owner)
+
+
+
+3. Mid-range, average usage car:
+
+1. Year: 2016
+2. Present Price: 6.0 (lakhs)
+3. Kms Driven: 60000
+4. Fuel Type: Petrol
+5. Seller Type: Dealer
+6. Transmission: Manual
+7. Owner: 1 (Second owner)
+
+
+
+4. Luxury, low-mileage car:
+
+1. Year: 2022
+2. Present Price: 25.0 (lakhs)
+3. Kms Driven: 8000
+4. Fuel Type: Petrol
+5. Seller Type: Dealer
+6. Transmission: Automatic
+7. Owner: 0 (First owner)
+
+
+
+5. Budget, high-mileage car:
+
+1. Year: 2012
+2. Present Price: 3.0 (lakhs)
+3. Kms Driven: 90000
+4. Fuel Type: CNG
+5. Seller Type: Individual
+6. Transmission: Manual
+7. Owner: 1 (Second owner)
