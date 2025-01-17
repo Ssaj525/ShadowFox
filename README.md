@@ -45,7 +45,7 @@ This repository leverages state-of-the-art machine learning techniques to addres
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ShadowFox
+   git clone https://github.com/Ssaj525/ShadowFox
    ```
 2. Navigate to the project directory:
    ```bash
